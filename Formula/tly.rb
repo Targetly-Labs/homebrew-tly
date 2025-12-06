@@ -25,10 +25,9 @@ class Tly < Formula
   end
 
   def install
-    # The archive contains a directory named targetly-{platform}-{version}/
-    # We need to cd into it to access the binaries
-    prefix_dir = "targetly-#{OS.mac? ? "darwin" : "linux"}-#{Hardware::CPU.arch}-#{version}"
-    bin.install "#{prefix_dir}/tly"
+    # Homebrew automatically strips single root directories from archives
+    # So we can reference the binary directly
+    bin.install "tly"
   end
 
   test do
