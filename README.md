@@ -24,7 +24,6 @@ brew upgrade tly
 After installation, you can use the `tly` command:
 
 ```bash
-tly --version
 tly login
 tly deploy
 ```
