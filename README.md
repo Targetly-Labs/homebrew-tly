@@ -2,6 +2,8 @@
 
 Official Homebrew tap for the Targetly CLI (`tly`).
 
+<a href="https://dofollow.tools" target="_blank"><img src="https://dofollow.tools/badge/badge_dark.svg" alt="Featured on Dofollow.Tools" width="200" height="54" /></a>
+
 ## Installation
 
 ```bash
