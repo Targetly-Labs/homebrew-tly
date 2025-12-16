@@ -12,6 +12,10 @@ brew tap Targetly-Labs/tly https://github.com/Targetly-Labs/brew-tly
 brew install tly
 ```
 
+## Demo
+
+<video src="./Targetly_Labs.mp4" controls muted loop autoplay width="600"></video>
+
 ## Updating
 
 ```bash
