@@ -14,9 +14,10 @@ brew install tly
 
 ## Demo
 
-https://github.com/Targetly-Labs/brew-tly/assets/Targetly_Labs.mp4
 
-> **Note**: If the video doesn't display above, you can [download it here](./Targetly_Labs.mp4) or visit the repository to view it.
+https://github.com/user-attachments/assets/fefc8802-a613-4111-bcfd-6dea242cbba3
+
+
 
 ## Updating
 
