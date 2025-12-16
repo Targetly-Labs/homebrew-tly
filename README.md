@@ -14,7 +14,7 @@ brew install tly
 
 ## Demo
 
-<video src="./Targetly_Labs.mp4" controls muted loop autoplay width="600"></video>
+<video src="Targetly_Labs.mp4" controls muted loop autoplay width="600"></video>
 
 ## Updating
 
