@@ -14,7 +14,9 @@ brew install tly
 
 ## Demo
 
-
+<a href="./Targetly_Labs.mp4" target="_blank">
+    <img src="https://img.shields.io/badge/Watch%20Demo-Video-red?style=for-the-badge&logo=youtube" alt="Watch Demo Video" width="200">
+</a>
 
 ## Updating
 
