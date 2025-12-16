@@ -14,9 +14,9 @@ brew install tly
 
 ## Demo
 
-<a href="./Targetly_Labs.mp4" target="_blank">
-    <img src="https://img.shields.io/badge/Watch%20Demo-Video-red?style=for-the-badge&logo=youtube" alt="Watch Demo Video" width="200">
-</a>
+https://github.com/Targetly-Labs/brew-tly/assets/Targetly_Labs.mp4
+
+> **Note**: If the video doesn't display above, you can [download it here](./Targetly_Labs.mp4) or visit the repository to view it.
 
 ## Updating
 
