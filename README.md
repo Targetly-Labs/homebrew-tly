@@ -6,7 +6,7 @@ Official Homebrew tap for the Targetly CLI (`tly`).
 
 ```bash
 # Add the tap
-brew tap Targetly-Labs/tly https://github.com/Targetly-Labs/brew-tly
+brew tap Targetly-Labs/homebrew-tly https://github.com/Targetly-Labs/homebrew-tly
 
 # Install tly
 brew install tly
