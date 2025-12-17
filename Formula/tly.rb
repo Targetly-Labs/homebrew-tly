@@ -1,6 +1,6 @@
 class Tly < Formula
   desc "Targetly CLI - Deploy and manage your containerized applications"
-  homepage "https://github.com/Targetly-Labs/brew-tly"
+  homepage "https://github.com/Targetly-Labs/homebrew-tly"
   version "1.0.0"
   license "MIT"
 
