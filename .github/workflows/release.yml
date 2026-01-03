@@ -1,0 +1,85 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'dist/**'
+      - 'Formula/**'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Needed to detect changes
+
+      - name: Check for dist changes
+        id: check_dist
+        run: |
+          if git diff --name-only HEAD~1 HEAD | grep -q "^dist/"; then
+            echo "dist_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "dist_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Extract version from formula
+        id: version
+        run: |
+          VERSION=$(grep -oP 'version "\K[^"]+' Formula/tly.rb)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Detected version: $VERSION"
+
+      - name: Check if release exists
+        id: check_release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "v${{ steps.version.outputs.version }}" &>/dev/null; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Delete existing release (if updating)
+        if: steps.check_release.outputs.exists == 'true' && steps.check_dist.outputs.dist_changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete "v${{ steps.version.outputs.version }}" --yes --cleanup-tag || true
+
+      - name: Create Release
+        if: steps.check_dist.outputs.dist_changed == 'true' || steps.check_release.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          
+          # Build release notes
+          NOTES="## Targetly CLI v${VERSION}
+
+          ### Installation
+
+          \`\`\`bash
+          brew tap Targetly-Labs/tly
+          brew install tly
+          \`\`\`
+
+          ### Included Binaries
+          - macOS (Intel): \`targetly-darwin-amd64-${VERSION}.tar.gz\`
+          - macOS (Apple Silicon): \`targetly-darwin-arm64-${VERSION}.tar.gz\`
+          - Linux (x86_64): \`targetly-linux-amd64-${VERSION}.tar.gz\`
+          - Linux (ARM64): \`targetly-linux-arm64-${VERSION}.tar.gz\`
+          "
+
+          # Create release and upload all dist files
+          gh release create "v${VERSION}" \
+            --title "v${VERSION}" \
+            --notes "$NOTES" \
+            dist/*.tar.gz

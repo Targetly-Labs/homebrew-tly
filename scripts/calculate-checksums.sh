@@ -6,7 +6,7 @@
 set -e
 
 # Update this version as needed
-VERSION="1.0.0"
+VERSION="1.1.0"
 
 echo "=== Targetly CLI Release Checksums ==="
 echo ""
@@ -15,9 +15,9 @@ platforms=("darwin-amd64" "darwin-arm64" "linux-amd64" "linux-arm64")
 
 for platform in "${platforms[@]}"; do
     file="targetly-${platform}-${VERSION}.tar.gz"
-    if [ -f "$file" ]; then
+    if [ -f "dist/$file" ]; then
         echo "${platform}:"
-        shasum -a 256 "$file" | awk '{print $1}'
+        shasum -a 256 "dist/$file" | awk '{print $1}'
         echo ""
     else
         echo "⚠️  Warning: $file not found"
